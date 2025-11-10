@@ -73,3 +73,24 @@ Get help: [Post in our discussion board](https://github.com/skills/.github/discu
 &copy; 2023 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
 
 </footer>
+
+## Cache clearing helper script
+
+Use the provided `scripts/clear_cache.sh` helper to wipe the macOS cache directory located at `/Users/haze/Library/Caches/`.
+
+```bash
+# Preview the files that would be deleted
+bash scripts/clear_cache.sh --dry-run
+
+# Clear the default cache directory
+bash scripts/clear_cache.sh
+
+# Target a custom cache directory
+bash scripts/clear_cache.sh --path /path/to/cache
+```
+
+To have the script run automatically every five minutes, add the following entry to your crontab with `crontab -e`:
+
+```
+*/5 * * * * /bin/bash /full/path/to/scripts/clear_cache.sh >> "$HOME"/clear-cache.log 2>&1
+```
